@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Электроотчет СНПХ</title>
+    <style>
+        :root {
+            --snph-blue: #0054a6;
+            --snph-red: #e31937;
+            --snph-white: #ffffff;
+            --snph-light-blue: #e6f0fa;
+            --snph-gray: #f5f5f5;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: var(--snph-gray);
+            color: #333;
+        }
+        
+        .header {
+            background-color: var(--snph-blue);
+            color: var(--snph-white);
+            padding: 20px;
+            border-radius: 5px 5px 0 0;
+            text-align: center;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        
+        .header .logo {
+            font-weight: bold;
+            font-size: 18px;
+            color: var(--snph-white);
+            margin-bottom: 10px;
+        }
+        
+        .section {
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 5px;
+            background-color: var(--snph-white);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .section-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+            color: var(--snph-blue);
+            border-bottom: 2px solid var(--snph-red);
+            padding-bottom: 5px;
+        }
+        
+        .measurement {
+            display: flex;
+            margin-bottom: 8px;
+            align-items: center;
+        }
+        
+        .measurement label {
+            width: 50px;
+            display: inline-block;
+            font-weight: bold;
+        }
+        
+        input {
+            width: 60px;
+            padding: 8px;
+            margin: 0 5px;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: var(--snph-light-blue);
+        }
+        
+        input:focus {
+            outline: none;
+            border-color: var(--snph-blue);
+            box-shadow: 0 0 0 2px rgba(0,84,166,0.2);
+        }
+        
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        button {
+            background-color: var(--snph-red);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        button:hover {
+            background-color: #c0102a;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        textarea {
+            width: 100%;
+            height: 250px;
+            margin-top: 10px;
+            padding: 15px;
+            font-family: monospace;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            resize: vertical;
+            background-color: var(--snph-light-blue);
+        }
+        
+        .br-input {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .br-input label {
+            font-weight: bold;
+            color: var(--snph-blue);
+            margin-right: 10px;
+        }
+        
+        .br-input input {
+            width: 100px;
+            padding: 10px;
+            font-weight: bold;
+            text-align: center;
+        }
+        
+        .subsection {
+            margin-bottom: 15px;
+            padding-left: 15px;
+            border-left: 3px solid var(--snph-blue);
+        }
+        
+        .subsection .section-title {
+            font-size: 1em;
+            color: var(--snph-red);
+            border-bottom: none;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #666;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">САМОТЛОРНЕФТЕПРОМХИМ</div>
+        <h1>Генератор электроотчета</h1>
+    </div>
+    
+    <div class="br-input">
+        <label for="br-number">Номер БР:</label>
+        <input type="text" id="br-number" placeholder="">
+    </div>
+    
+    <div class="section">
+        <div class="section-title">Ввод в ВРУ</div>
+        <div class="measurement">
+            <label>U=</label>
+            <input type="text" id="vru-u1">
+            <input type="text" id="vru-u2">
+            <input type="text" id="vru-u3">
+        </div>
+        <div class="measurement">
+            <label>I=</label>
+            <input type="text" id="vru-i1">
+            <input type="text" id="vru-i2">
+            <input type="text" id="vru-i3">
+        </div>
+    </div>
+    
+    <div class="section">
+        <div class="section-title">БПР</div>
+        
+        <div class="subsection">
+            <div class="section-title">ШН 3</div>
+            <div class="measurement">
+                <label>U=</label>
+                <input type="text" id="bpr-u1">
+                <input type="text" id="bpr-u2">
+                <input type="text" id="bpr-u3">
+            </div>
+            <div class="measurement">
+                <label>I=</label>
+                <input type="text" id="bpr-i1">
+                <input type="text" id="bpr-i2">
+                <input type="text" id="bpr-i3">
+            </div>
+        </div>
+        
+        <div class="subsection">
+            <div class="section-title">Перемеш 1</div>
+            <div class="measurement">
+                <label>U=</label>
+                <input type="text" id="per1-u1">
+                <input type="text" id="per1-u2">
+                <input type="text" id="per1-u3">
+            </div>
+            <div class="measurement">
+                <label>I=</label>
+                <input type="text" id="per1-i1">
+                <input type="text" id="per1-i2">
+                <input type="text" id="per1-i3">
+            </div>
+        </div>
+        
+        <div class="subsection">
+            <div class="section-title">Перемеш 2</div>
+            <div class="measurement">
+                <label>U=</label>
+                <input type="text" id="per2-u1">
+                <input type="text" id="per2-u2">
+                <input type="text" id="per2-u3">
+            </div>
+            <div class="measurement">
+                <label>I=</label>
+                <input type="text" id="per2-i1">
+                <input type="text" id="per2-i2">
+                <input type="text" id="per2-i3">
+            </div>
+        </div>
+        
+        <div class="subsection">
+            <div class="section-title">Перемеш 3</div>
+            <div class="measurement">
+                <label>U=</label>
+                <input type="text" id="per3-u1">
+                <input type="text" id="per3-u2">
+                <input type="text" id="per3-u3">
+            </div>
+            <div class="measurement">
+                <label>I=</label>
+                <input type="text" id="per3-i1">
+                <input type="text" id="per3-i2">
+                <input type="text" id="per3-i3">
+            </div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <div class="section-title">ЦСГО</div>
+        
+        <div class="subsection">
+            <div class="section-title">Вибросито 1</div>
+            <div class="measurement">
+                <label>U=</label>
+                <input type="text" id="vib1-u1">
+                <input type="text" id="vib1-u2">
+                <input type="text" id="vib1-u3">
+            </div>
+            <div class="measurement">
+                <label>I=</label>
+                <input type="text" id="vib1-i1">
+                <input type="text" id="vib1-i2">
+                <input type="text" id="vib1-i3">
+            </div>
+        </div>
+        
+        <div class="subsection">
+            <div class="section-title">Вибросито 2</div>
+            <div class="measurement">
+                <label>U=</label>
+                <input type="text" id="vib2-u1">
+                <input type="text" id="vib2-u2">
+                <input type="text" id="vib2-u3">
+            </div>
+            <div class="measurement">
+                <label>I=</label>
+                <input type="text" id="vib2-i1">
+                <input type="text" id="vib2-i2">
+                <input type="text" id="vib2-i3">
+            </div>
+        </div>
+        
+        <div class="subsection">
+            <div class="section-title">Перемешиватель 1</div>
+            <div class="measurement">
+                <label>U=</label>
+                <input type="text" id="csgo-per1-u1">
+                <input type="text" id="csgo-per1-u2">
+                <input type="text" id="csgo-per1-u3">
+            </div>
+            <div class="measurement">
+                <label>I=</label>
+                <input type="text" id="csgo-per1-i1">
+                <input type="text" id="csgo-per1-i2">
+                <input type="text" id="csgo-per1-i3">
+            </div>
+        </div>
+        
+        <div class="subsection">
+            <div class="section-title">Перемешиватель 2</div>
+            <div class="measurement">
+                <label>U=</label>
+                <input type="text" id="csgo-per2-u1">
+                <input type="text" id="csgo-per2-u2">
+                <input type="text" id="csgo-per2-u3">
+            </div>
+            <div class="measurement">
+                <label>I=</label>
+                <input type="text" id="csgo-per2-i1">
+                <input type="text" id="csgo-per2-i2">
+                <input type="text" id="csgo-per2-i3">
+            </div>
+        </div>
+        
+        <div class="subsection">
+            <div class="section-title">Центрифуга</div>
+            <div class="measurement">
+                <label>U=</label>
+                <input type="text" id="centr-u1">
+                <input type="text" id="centr-u2">
+                <input type="text" id="centr-u3">
+            </div>
+            <div class="measurement">
+                <label>I=</label>
+                <input type="text" id="centr-i1">
+                <input type="text" id="centr-i2">
+                <input type="text" id="centr-i3">
+            </div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <div class="section-title">Компрессор</div>
+        <div class="measurement">
+            <label>U=</label>
+            <input type="text" id="comp-u1">
+            <input type="text" id="comp-u2">
+            <input type="text" id="comp-u3">
+        </div>
+        <div class="measurement">
+            <label>I=</label>
+            <input type="text" id="comp-i1">
+            <input type="text" id="comp-i2">
+            <input type="text" id="comp-i3">
+        </div>
+    </div>
+    
+    <div class="section">
+        <div class="section-title">Иждрил1</div>
+        
+        <div class="subsection">
+            <div class="section-title">Подпорный насос</div>
+            <div class="measurement">
+                <label>U=</label>
+                <input type="text" id="izh1-pod-u1">
+                <input type="text" id="izh1-pod-u2">
+                <input type="text" id="izh1-pod-u3">
+            </div>
+            <div class="measurement">
+                <label>I=</label>
+                <input type="text" id="izh1-pod-i1">
+                <input type="text" id="izh1-pod-i2">
+                <input type="text" id="izh1-pod-i3">
+            </div>
+        </div>
+        
+        <div class="subsection">
+            <div class="section-title">Смазка</div>
+            <div class="measurement">
+                <label>U=</label>
+                <input type="text" id="izh1-smaz-u1">
+                <input type="text" id="izh1-smaz-u2">
+                <input type="text" id="izh1-smaz-u3">
+            </div>
+            <div class="measurement">
+                <label>I=</label>
+                <input type="text" id="izh1-smaz-i1">
+                <input type="text" id="izh1-smaz-i2">
+                <input type="text" id="izh1-smaz-i3">
+            </div>
+        </div>
+        
+        <div class="subsection">
+            <div class="section-title">Орошение</div>
+            <div class="measurement">
+                <label>U=</label>
+                <input type="text" id="izh1-or-u1">
+                <input type="text" id="izh1-or-u2">
+                <input type="text" id="izh1-or-u3">
+            </div>
+            <div class="measurement">
+                <label>I=</label>
+                <input type="text" id="izh1-or-i1">
+                <input type="text" id="izh1-or-i2">
+                <input type="text" id="izh1-or-i3">
+            </div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <div class="section-title">Иждрил 2</div>
+        
+        <div class="subsection">
+            <div class="section-title">Подпорный насос</div>
+            <div class="measurement">
+                <label>U=</label>
+                <input type="text" id="izh2-pod-u1">
+                <input type="text" id="izh2-pod-u2">
+                <input type="text" id="izh2-pod-u3">
+            </div>
+            <div class="measurement">
+                <label>I=</label>
+                <input type="text" id="izh2-pod-i1">
+                <input type="text" id="izh2-pod-i2">
+                <input type="text" id="izh2-pod-i3">
+            </div>
+        </div>
+        
+        <div class="subsection">
+            <div class="section-title">Смазка</div>
+            <div class="measurement">
+                <label>U=</label>
+                <input type="text" id="izh2-smaz-u1">
+                <input type="text" id="izh2-smaz-u2">
+                <input type="text" id="izh2-smaz-u3">
+            </div>
+            <div class="measurement">
+                <label>I=</label>
+                <input type="text" id="izh2-smaz-i1">
+                <input type="text" id="izh2-smaz-i2">
+                <input type="text" id="izh2-smaz-i3">
+            </div>
+        </div>
+        
+        <div class="subsection">
+            <div class="section-title">Орошение</div>
+            <div class="measurement">
+                <label>U=</label>
+                <input type="text" id="izh2-or-u1">
+                <input type="text" id="izh2-or-u2">
+                <input type="text" id="izh2-or-u3">
+            </div>
+            <div class="measurement">
+                <label>I=</label>
+                <input type="text" id="izh2-or-i1">
+                <input type="text" id="izh2-or-i2">
+                <input type="text" id="izh2-or-i3">
+            </div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <div class="section-title">Доп. Ёмкость</div>
+        <div class="measurement">
+            <label>U=</label>
+            <input type="text" id="emk-u1">
+            <input type="text" id="emk-u2">
+            <input type="text" id="emk-u3">
+        </div>
+        <div class="measurement">
+            <label>I=</label>
+            <input type="text" id="emk-i1">
+            <input type="text" id="emk-i2">
+            <input type="text" id="emk-i3">
+        </div>
+    </div>
+    
+    <div class="section">
+        <div class="section-title">Автодолив</div>
+        <div class="measurement">
+            <label>U=</label>
+            <input type="text" id="doliv-u1">
+            <input type="text" id="doliv-u2">
+            <input type="text" id="doliv-u3">
+        </div>
+        <div class="measurement">
+            <label>I=</label>
+            <input type="text" id="doliv-i1">
+            <input type="text" id="doliv-i2">
+            <input type="text" id="doliv-i3">
+        </div>
+        <div class="measurement">
+            <label>ШН 1 I=</label>
+            <input type="text" id="doliv-shn1-i1">
+            <input type="text" id="doliv-shn1-i2">
+            <input type="text" id="doliv-shn1-i3">
+        </div>
+        <div class="measurement">
+            <label>ШН 2 I=</label>
+            <input type="text" id="doliv-shn2-i1">
+            <input type="text" id="doliv-shn2-i2">
+            <input type="text" id="doliv-shn2-i3">
+        </div>
+    </div>
+    
+    <div class="buttons">
+        <button id="generate-btn">Сгенерировать отчет</button>
+        <button id="clear-btn">Очистить все</button>
+    </div>
+    
+    <textarea id="result" readonly placeholder="Здесь появится готовый отчет"></textarea>
+    
+    <div class="buttons">
+        <button id="copy-btn">Копировать отчет</button>
+    </div>
+    
+    <div class="footer">
+        СНПХ - Самотлорнефтепромхим © 2023
+    </div>
+    
+    <script>
+        document.getElementById('generate-btn').addEventListener('click', function() {
+            const brNumber = document.getElementById('br-number').value || '33';
+            
+            let report = `${brNumber}бр\n`;
+            let hasContent = false;
+            
+            // Ввод в ВРУ
+            const vruU = getMeasurementValues('vru-u1', 'vru-u2', 'vru-u3');
+            const vruI = getMeasurementValues('vru-i1', 'vru-i2', 'vru-i3');
+            
+            if (vruU || vruI) {
+                report += `Ввод в ВРУ\n`;
+                if (vruU) report += `U=${vruU}\n`;
+                if (vruI) report += `I=${vruI}\n`;
+                report += `\n`;
+                hasContent = true;
+            }
+            
+            // БПР
+            const bprContent = generateBprSection();
+            if (bprContent) {
+                report += bprContent;
+                hasContent = true;
+            }
+            
+            // ЦСГО
+            const csgoContent = generateCsgoSection();
+            if (csgoContent) {
+                report += csgoContent;
+                hasContent = true;
+            }
+            
+            // Компрессор
+            const compU = getMeasurementValues('comp-u1', 'comp-u2', 'comp-u3');
+            const compI = getMeasurementValues('comp-i1', 'comp-i2', 'comp-i3');
+            
+            if (compU || compI) {
+                report += `Компрессор\n`;
+                if (compU) report += `U=${compU}\n`;
+                if (compI) report += `I=${compI}\n`;
+                report += `\n`;
+                hasContent = true;
+            }
+            
+            // Иждрил1
+            const izh1Content = generateIzhdrilSection('1');
+            if (izh1Content) {
+                report += izh1Content;
+                hasContent = true;
+            }
+            
+            // Иждрил 2
+            const izh2Content = generateIzhdrilSection('2');
+            if (izh2Content) {
+                report += izh2Content;
+                hasContent = true;
+            }
+            
+            // Доп. Ёмкость
+            const emkU = getMeasurementValues('emk-u1', 'emk-u2', 'emk-u3');
+            const emkI = getMeasurementValues('emk-i1', 'emk-i2', 'emk-i3');
+            
+            if (emkU || emkI) {
+                report += `Доп. Ёмкость\n`;
+                if (emkU) report += `U=${emkU}\n`;
+                if (emkI) report += `I=${emkI}\n`;
+                report += `\n`;
+                hasContent = true;
+            }
+            
+            // Автодолив
+            const dolivContent = generateDolivSection();
+            if (dolivContent) {
+                report += dolivContent;
+                hasContent = true;
+            }
+            
+            if (!hasContent) {
+                report = "Нет данных для отчета. Заполните хотя бы одно поле.";
+            }
+            
+            document.getElementById('result').value = report;
+        });
+        
+        function generateBprSection() {
+            let sectionContent = '';
+            let hasBprContent = false;
+            
+            // ШН 3
+            const shn3U = getMeasurementValues('bpr-u1', 'bpr-u2', 'bpr-u3');
+            const shn3I = getMeasurementValues('bpr-i1', 'bpr-i2', 'bpr-i3');
+            
+            // Перемеш 1
+            const per1U = getMeasurementValues('per1-u1', 'per1-u2', 'per1-u3');
+            const per1I = getMeasurementValues('per1-i1', 'per1-i2', 'per1-i3');
+            
+            // Перемеш 2
+            const per2U = getMeasurementValues('per2-u1', 'per2-u2', 'per2-u3');
+            const per2I = getMeasurementValues('per2-i1', 'per2-i2', 'per2-i3');
+            
+            // Перемеш 3
+            const per3U = getMeasurementValues('per3-u1', 'per3-u2', 'per3-u3');
+            const per3I = getMeasurementValues('per3-i1', 'per3-i2', 'per3-i3');
+            
+            if (shn3U || shn3I || per1U || per1I || per2U || per2I || per3U || per3I) {
+                sectionContent += `БПР\n`;
+                hasBprContent = true;
+                
+                if (shn3U || shn3I) {
+                    sectionContent += `ШН 3\n`;
+                    if (shn3U) sectionContent += `U=${shn3U}\n`;
+                    if (shn3I) sectionContent += `I=${shn3I}\n`;
+                    sectionContent += `\n`;
+                }
+                
+                if (per1U || per1I) {
+                    sectionContent += `Перемеш 1\n`;
+                    if (per1U) sectionContent += `U=${per1U}\n`;
+                    if (per1I) sectionContent += `I=${per1I}\n`;
+                    sectionContent += `\n`;
+                }
+                
+                if (per2U || per2I) {
+                    sectionContent += `Перемеш 2\n`;
+                    if (per2U) sectionContent += `U=${per2U}\n`;
+                    if (per2I) sectionContent += `I=${per2I}\n`;
+                    sectionContent += `\n`;
+                }
+                
+                if (per3U || per3I) {
+                    sectionContent += `Перемеш 3\n`;
+                    if (per3U) sectionContent += `U=${per3U}\n`;
+                    if (per3I) sectionContent += `I=${per3I}\n`;
+                    sectionContent += `\n`;
+                }
+            }
+            
+            return hasBprContent ? sectionContent : '';
+        }
+        
+        function generateCsgoSection() {
+            let sectionContent = '';
+            let hasCsgoContent = false;
+            
+            // Вибросито 1
+            const vib1U = getMeasurementValues('vib1-u1', 'vib1-u2', 'vib1-u3');
+            const vib1I = getMeasurementValues('vib1-i1', 'vib1-i2', 'vib1-i3');
+            
+            // Вибросито 2
+            const vib2U = getMeasurementValues('vib2-u1', 'vib2-u2', 'vib2-u3');
+            const vib2I = getMeasurementValues('vib2-i1', 'vib2-i2', 'vib2-i3');
+            
+            // Перемешиватель 1
+            const csgoPer1U = getMeasurementValues('csgo-per1-u1', 'csgo-per1-u2', 'csgo-per1-u3');
+            const csgoPer1I = getMeasurementValues('csgo-per1-i1', 'csgo-per1-i2', 'csgo-per1-i3');
+            
+            // Перемешиватель 2
+            const csgoPer2U = getMeasurementValues('csgo-per2-u1', 'csgo-per2-u2', 'csgo-per2-u3');
+            const csgoPer2I = getMeasurementValues('csgo-per2-i1', 'csgo-per2-i2', 'csgo-per2-i3');
+            
+            // Центрифуга
+            const centrU = getMeasurementValues('centr-u1', 'centr-u2', 'centr-u3');
+            const centrI = getMeasurementValues('centr-i1', 'centr-i2', 'centr-i3');
+            
+            if (vib1U || vib1I || vib2U || vib2I || csgoPer1U || csgoPer1I || csgoPer2U || csgoPer2I || centrU || centrI) {
+                sectionContent += `ЦСГО\n`;
+                hasCsgoContent = true;
+                
+                if (vib1U || vib1I) {
+                    sectionContent += `Вибросито 1\n`;
+                    if (vib1U) sectionContent += `U=${vib1U}\n`;
+                    if (vib1I) sectionContent += `I=${vib1I}\n`;
+                    sectionContent += `\n`;
+                }
+                
+                if (vib2U || vib2I) {
+                    sectionContent += `Вибросито 2\n`;
+                    if (vib2U) sectionContent += `U=${vib2U}\n`;
+                    if (vib2I) sectionContent += `I=${vib2I}\n`;
+                    sectionContent += `\n`;
+                }
+                
+                if (csgoPer1U || csgoPer1I) {
+                    sectionContent += `Перемешиватель 1\n`;
+                    if (csgoPer1U) sectionContent += `U=${csgoPer1U}\n`;
+                    if (csgoPer1I) sectionContent += `I=${csgoPer1I}\n`;
+                    sectionContent += `\n`;
+                }
+                
+                if (csgoPer2U || csgoPer2I) {
+                    sectionContent += `Перемешиватель 2\n`;
+                    if (csgoPer2U) sectionContent += `U=${csgoPer2U}\n`;
+                    if (csgoPer2I) sectionContent += `I=${csgoPer2I}\n`;
+                    sectionContent += `\n`;
+                }
+                
+                if (centrU || centrI) {
+                    sectionContent += `Центрифуга\n`;
+                    if (centrU) sectionContent += `U=${centrU}\n`;
+                    if (centrI) sectionContent += `I=${centrI}\n`;
+                    sectionContent += `\n`;
+                }
+            }
+            
+            return hasCsgoContent ? sectionContent : '';
+        }
+        
+        function generateIzhdrilSection(number) {
+            let sectionContent = '';
+            let hasIzhContent = false;
+            
+            // Подпорный насос
+            const podU = getMeasurementValues(`izh${number}-pod-u1`, `izh${number}-pod-u2`, `izh${number}-pod-u3`);
+            const podI = getMeasurementValues(`izh${number}-pod-i1`, `izh${number}-pod-i2`, `izh${number}-pod-i3`);
+            
+            // Смазка
+            const smazU = getMeasurementValues(`izh${number}-smaz-u1`, `izh${number}-smaz-u2`, `izh${number}-smaz-u3`);
+            const smazI = getMeasurementValues(`izh${number}-smaz-i1`, `izh${number}-smaz-i2`, `izh${number}-smaz-i3`);
+            
+            // Орошение
+            const orU = getMeasurementValues(`izh${number}-or-u1`, `izh${number}-or-u2`, `izh${number}-or-u3`);
+            const orI = getMeasurementValues(`izh${number}-or-i1`, `izh${number}-or-i2`, `izh${number}-or-i3`);
+            
+            if (podU || podI || smazU || smazI || orU || orI) {
+                sectionContent += `Иждрил${number}\n`;
+                hasIzhContent = true;
+                
+                if (podU || podI) {
+                    sectionContent += `Подпорный насос\n`;
+                    if (podU) sectionContent += `U=${podU}\n`;
+                    if (podI) sectionContent += `I=${podI}\n`;
+                    sectionContent += `\n`;
+                }
+                
+                if (smazU || smazI) {
+                    sectionContent += `Смазка\n`;
+                    if (smazU) sectionContent += `U=${smazU}\n`;
+                    if (smazI) sectionContent += `I=${smazI}\n`;
+                    sectionContent += `\n`;
+                }
+                
+                if (orU || orI) {
+                    sectionContent += `Орошение\n`;
+                    if (orU) sectionContent += `U=${orU}\n`;
+                    if (orI) sectionContent += `I=${orI}\n`;
+                    sectionContent += `\n`;
+                }
+            }
+            
+            return hasIzhContent ? sectionContent : '';
+        }
+        
+        function generateDolivSection() {
+            let sectionContent = '';
+            let hasDolivContent = false;
+            
+            // Автодолив U/I
+            const dolivU = getMeasurementValues('doliv-u1', 'doliv-u2', 'doliv-u3');
+            const dolivI = getMeasurementValues('doliv-i1', 'doliv-i2', 'doliv-i3');
+            
+            // ШН 1
+            const dolivShn1I = getMeasurementValues('doliv-shn1-i1', 'doliv-shn1-i2', 'doliv-shn1-i3');
+            
+            // ШН 2
+            const dolivShn2I = getMeasurementValues('doliv-shn2-i1', 'doliv-shn2-i2', 'doliv-shn2-i3');
+            
+            if (dolivU || dolivI || dolivShn1I || dolivShn2I) {
+                sectionContent += `Автодолив\n`;
+                hasDolivContent = true;
+                
+                if (dolivU) sectionContent += `U=${dolivU}\n`;
+                if (dolivI) sectionContent += `I=${dolivI}\n`;
+                if (dolivShn1I) sectionContent += `ШН 1 I=${dolivShn1I}\n`;
+                if (dolivShn2I) sectionContent += `ШН 2 I=${dolivShn2I}\n`;
+                sectionContent += `\n`;
+            }
+            
+            return hasDolivContent ? sectionContent : '';
+        }
+        
+        document.getElementById('copy-btn').addEventListener('click', function() {
+            const resultTextarea = document.getElementById('result');
+            resultTextarea.select();
+            document.execCommand('copy');
+            alert('Отчет скопирован в буфер обмена!');
+        });
+        
+        document.getElementById('clear-btn').addEventListener('click', function() {
+            // Получаем все элементы input на странице
+            const inputs = document.querySelectorAll('input');
+            
+            // Очищаем каждый input
+            inputs.forEach(input => {
+                input.value = '';
+            });
+            
+            // Очищаем текстовое поле с результатом
+            document.getElementById('result').value = '';
+            
+            // Очищаем поле с номером БР
+            document.getElementById('br-number').value = '';
+        });
+        
+        function getValue(id) {
+            const value = document.getElementById(id).value.trim();
+            return value === '' ? '' : value;
+        }
+        
+        function getMeasurementValues(id1, id2, id3) {
+            const val1 = getValue(id1);
+            const val2 = getValue(id2);
+            const val3 = getValue(id3);
+            
+            if (val1 === '' && val2 === '' && val3 === '') {
+                return '';
+            }
+            
+            return `(${val1}) (${val2}) (${val3})`;
+        }
+    </script>
+</body>
+</html>

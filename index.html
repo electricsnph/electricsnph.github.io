@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Электроотчет СНПХ</title>
+    <link rel="icon" href="logo.png" type="image/png">
     <style>
         :root {
             --snph-blue: #0054a6;
@@ -33,15 +34,12 @@
         }
         
         .header h1 {
-            margin: 0;
+            margin: 10px 0 0 0;
             font-size: 24px;
         }
         
-        .header .logo {
-            font-weight: bold;
-            font-size: 18px;
-            color: var(--snph-white);
-            margin-bottom: 10px;
+        .header img {
+            height: 60px;
         }
         
         .section {
@@ -172,7 +170,7 @@
 </head>
 <body>
     <div class="header">
-        <div class="logo">САМОТЛОРНЕФТЕПРОМХИМ</div>
+        <img src="logo.png" alt="СНПХ">
         <h1>Генератор электроотчета</h1>
     </div>
     
@@ -333,6 +331,54 @@
         </div>
         
         <div class="subsection">
+            <div class="section-title">Дегазатор</div>
+            <div class="measurement">
+                <label>U=</label>
+                <input type="text" id="degaz-u1">
+                <input type="text" id="degaz-u2">
+                <input type="text" id="degaz-u3">
+            </div>
+            <div class="measurement">
+                <label>I=</label>
+                <input type="text" id="degaz-i1">
+                <input type="text" id="degaz-i2">
+                <input type="text" id="degaz-i3">
+            </div>
+        </div>
+        
+        <div class="subsection">
+            <div class="section-title">ШН 1</div>
+            <div class="measurement">
+                <label>U=</label>
+                <input type="text" id="csgo-shn1-u1">
+                <input type="text" id="csgo-shn1-u2">
+                <input type="text" id="csgo-shn1-u3">
+            </div>
+            <div class="measurement">
+                <label>I=</label>
+                <input type="text" id="csgo-shn1-i1">
+                <input type="text" id="csgo-shn1-i2">
+                <input type="text" id="csgo-shn1-i3">
+            </div>
+        </div>
+        
+        <div class="subsection">
+            <div class="section-title">ШН 2</div>
+            <div class="measurement">
+                <label>U=</label>
+                <input type="text" id="csgo-shn2-u1">
+                <input type="text" id="csgo-shn2-u2">
+                <input type="text" id="csgo-shn2-u3">
+            </div>
+            <div class="measurement">
+                <label>I=</label>
+                <input type="text" id="csgo-shn2-i1">
+                <input type="text" id="csgo-shn2-i2">
+                <input type="text" id="csgo-shn2-i3">
+            </div>
+        </div>
+        
+        <div class="subsection">
             <div class="section-title">Центрифуга</div>
             <div class="measurement">
                 <label>U=</label>
@@ -487,29 +533,53 @@
     
     <div class="section">
         <div class="section-title">Автодолив</div>
-        <div class="measurement">
-            <label>U=</label>
-            <input type="text" id="doliv-u1">
-            <input type="text" id="doliv-u2">
-            <input type="text" id="doliv-u3">
+        
+        <div class="subsection">
+            <div class="section-title">ШН 1</div>
+            <div class="measurement">
+                <label>U=</label>
+                <input type="text" id="doliv-shn1-u1">
+                <input type="text" id="doliv-shn1-u2">
+                <input type="text" id="doliv-shn1-u3">
+            </div>
+            <div class="measurement">
+                <label>I=</label>
+                <input type="text" id="doliv-shn1-i1">
+                <input type="text" id="doliv-shn1-i2">
+                <input type="text" id="doliv-shn1-i3">
+            </div>
         </div>
-        <div class="measurement">
-            <label>I=</label>
-            <input type="text" id="doliv-i1">
-            <input type="text" id="doliv-i2">
-            <input type="text" id="doliv-i3">
+        
+        <div class="subsection">
+            <div class="section-title">ШН 2</div>
+            <div class="measurement">
+                <label>U=</label>
+                <input type="text" id="doliv-shn2-u1">
+                <input type="text" id="doliv-shn2-u2">
+                <input type="text" id="doliv-shn2-u3">
+            </div>
+            <div class="measurement">
+                <label>I=</label>
+                <input type="text" id="doliv-shn2-i1">
+                <input type="text" id="doliv-shn2-i2">
+                <input type="text" id="doliv-shn2-i3">
+            </div>
         </div>
-        <div class="measurement">
-            <label>ШН 1 I=</label>
-            <input type="text" id="doliv-shn1-i1">
-            <input type="text" id="doliv-shn1-i2">
-            <input type="text" id="doliv-shn1-i3">
-        </div>
-        <div class="measurement">
-            <label>ШН 2 I=</label>
-            <input type="text" id="doliv-shn2-i1">
-            <input type="text" id="doliv-shn2-i2">
-            <input type="text" id="doliv-shn2-i3">
+        
+        <div class="subsection">
+            <div class="section-title">Перемеш 1</div>
+            <div class="measurement">
+                <label>U=</label>
+                <input type="text" id="doliv-per1-u1">
+                <input type="text" id="doliv-per1-u2">
+                <input type="text" id="doliv-per1-u3">
+            </div>
+            <div class="measurement">
+                <label>I=</label>
+                <input type="text" id="doliv-per1-i1">
+                <input type="text" id="doliv-per1-i2">
+                <input type="text" id="doliv-per1-i3">
+            </div>
         </div>
     </div>
     
@@ -530,9 +600,13 @@
     
     <script>
         document.getElementById('generate-btn').addEventListener('click', function() {
-            const brNumber = document.getElementById('br-number').value || '33';
+            const brNumber = document.getElementById('br-number').value;
             
-            let report = `${brNumber}бр\n`;
+            let report = '';
+            if (brNumber) {
+                report += `${brNumber}бр\n`;
+            }
+            
             let hasContent = false;
             
             // Ввод в ВРУ
@@ -689,11 +763,24 @@
             const csgoPer2U = getMeasurementValues('csgo-per2-u1', 'csgo-per2-u2', 'csgo-per2-u3');
             const csgoPer2I = getMeasurementValues('csgo-per2-i1', 'csgo-per2-i2', 'csgo-per2-i3');
             
+            // Дегазатор
+            const degazU = getMeasurementValues('degaz-u1', 'degaz-u2', 'degaz-u3');
+            const degazI = getMeasurementValues('degaz-i1', 'degaz-i2', 'degaz-i3');
+            
+            // ШН 1
+            const csgoShn1U = getMeasurementValues('csgo-shn1-u1', 'csgo-shn1-u2', 'csgo-shn1-u3');
+            const csgoShn1I = getMeasurementValues('csgo-shn1-i1', 'csgo-shn1-i2', 'csgo-shn1-i3');
+            
+            // ШН 2
+            const csgoShn2U = getMeasurementValues('csgo-shn2-u1', 'csgo-shn2-u2', 'csgo-shn2-u3');
+            const csgoShn2I = getMeasurementValues('csgo-shn2-i1', 'csgo-shn2-i2', 'csgo-shn2-i3');
+            
             // Центрифуга
             const centrU = getMeasurementValues('centr-u1', 'centr-u2', 'centr-u3');
             const centrI = getMeasurementValues('centr-i1', 'centr-i2', 'centr-i3');
             
-            if (vib1U || vib1I || vib2U || vib2I || csgoPer1U || csgoPer1I || csgoPer2U || csgoPer2I || centrU || centrI) {
+            if (vib1U || vib1I || vib2U || vib2I || csgoPer1U || csgoPer1I || csgoPer2U || csgoPer2I || 
+                degazU || degazI || csgoShn1U || csgoShn1I || csgoShn2U || csgoShn2I || centrU || centrI) {
                 sectionContent += `ЦСГО\n`;
                 hasCsgoContent = true;
                 
@@ -722,6 +809,27 @@
                     sectionContent += `Перемешиватель 2\n`;
                     if (csgoPer2U) sectionContent += `U=${csgoPer2U}\n`;
                     if (csgoPer2I) sectionContent += `I=${csgoPer2I}\n`;
+                    sectionContent += `\n`;
+                }
+                
+                if (degazU || degazI) {
+                    sectionContent += `Дегазатор\n`;
+                    if (degazU) sectionContent += `U=${degazU}\n`;
+                    if (degazI) sectionContent += `I=${degazI}\n`;
+                    sectionContent += `\n`;
+                }
+                
+                if (csgoShn1U || csgoShn1I) {
+                    sectionContent += `ШН 1\n`;
+                    if (csgoShn1U) sectionContent += `U=${csgoShn1U}\n`;
+                    if (csgoShn1I) sectionContent += `I=${csgoShn1I}\n`;
+                    sectionContent += `\n`;
+                }
+                
+                if (csgoShn2U || csgoShn2I) {
+                    sectionContent += `ШН 2\n`;
+                    if (csgoShn2U) sectionContent += `U=${csgoShn2U}\n`;
+                    if (csgoShn2I) sectionContent += `I=${csgoShn2I}\n`;
                     sectionContent += `\n`;
                 }
                 
@@ -785,25 +893,42 @@
             let sectionContent = '';
             let hasDolivContent = false;
             
-            // Автодолив U/I
-            const dolivU = getMeasurementValues('doliv-u1', 'doliv-u2', 'doliv-u3');
-            const dolivI = getMeasurementValues('doliv-i1', 'doliv-i2', 'doliv-i3');
-            
             // ШН 1
+            const dolivShn1U = getMeasurementValues('doliv-shn1-u1', 'doliv-shn1-u2', 'doliv-shn1-u3');
             const dolivShn1I = getMeasurementValues('doliv-shn1-i1', 'doliv-shn1-i2', 'doliv-shn1-i3');
             
             // ШН 2
+            const dolivShn2U = getMeasurementValues('doliv-shn2-u1', 'doliv-shn2-u2', 'doliv-shn2-u3');
             const dolivShn2I = getMeasurementValues('doliv-shn2-i1', 'doliv-shn2-i2', 'doliv-shn2-i3');
             
-            if (dolivU || dolivI || dolivShn1I || dolivShn2I) {
+            // Перемеш 1
+            const dolivPer1U = getMeasurementValues('doliv-per1-u1', 'doliv-per1-u2', 'doliv-per1-u3');
+            const dolivPer1I = getMeasurementValues('doliv-per1-i1', 'doliv-per1-i2', 'doliv-per1-i3');
+            
+            if (dolivShn1U || dolivShn1I || dolivShn2U || dolivShn2I || dolivPer1U || dolivPer1I) {
                 sectionContent += `Автодолив\n`;
                 hasDolivContent = true;
                 
-                if (dolivU) sectionContent += `U=${dolivU}\n`;
-                if (dolivI) sectionContent += `I=${dolivI}\n`;
-                if (dolivShn1I) sectionContent += `ШН 1 I=${dolivShn1I}\n`;
-                if (dolivShn2I) sectionContent += `ШН 2 I=${dolivShn2I}\n`;
-                sectionContent += `\n`;
+                if (dolivShn1U || dolivShn1I) {
+                    sectionContent += `ШН 1\n`;
+                    if (dolivShn1U) sectionContent += `U=${dolivShn1U}\n`;
+                    if (dolivShn1I) sectionContent += `I=${dolivShn1I}\n`;
+                    sectionContent += `\n`;
+                }
+                
+                if (dolivShn2U || dolivShn2I) {
+                    sectionContent += `ШН 2\n`;
+                    if (dolivShn2U) sectionContent += `U=${dolivShn2U}\n`;
+                    if (dolivShn2I) sectionContent += `I=${dolivShn2I}\n`;
+                    sectionContent += `\n`;
+                }
+                
+                if (dolivPer1U || dolivPer1I) {
+                    sectionContent += `Перемеш 1\n`;
+                    if (dolivPer1U) sectionContent += `U=${dolivPer1U}\n`;
+                    if (dolivPer1I) sectionContent += `I=${dolivPer1I}\n`;
+                    sectionContent += `\n`;
+                }
             }
             
             return hasDolivContent ? sectionContent : '';
@@ -817,18 +942,11 @@
         });
         
         document.getElementById('clear-btn').addEventListener('click', function() {
-            // Получаем все элементы input на странице
             const inputs = document.querySelectorAll('input');
-            
-            // Очищаем каждый input
             inputs.forEach(input => {
                 input.value = '';
             });
-            
-            // Очищаем текстовое поле с результатом
             document.getElementById('result').value = '';
-            
-            // Очищаем поле с номером БР
             document.getElementById('br-number').value = '';
         });
         
